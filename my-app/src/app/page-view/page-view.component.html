@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tharun | Full Stack Developer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+:root {
+  --primary: #0d6efd;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --glow: rgba(13, 110, 253, 0.4);
+}
+
+body.dark-mode {
+  --bg: #020617;
+  --card: #0f172a;
+  --text: #f8fafc;
+  --glow: rgba(59, 130, 246, 0.6);
+}
+
+body { 
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  background: var(--bg); 
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+  padding-top: 90px;
+}
+
+/* NAVBAR WITH LABELS */
+.navbar {
+  backdrop-filter: blur(15px);
+  background: rgba(13, 110, 253, 0.95) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+body.dark-mode .navbar { background: rgba(15, 23, 42, 0.95) !important; }
+
+.nav-link-custom {
+  color: white !important;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.nav-link-custom:hover { background: rgba(255,255,255,0.1); color: #ffd966 !important; }
+.nav-link-custom i { font-size: 1.4rem; }
+.nav-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+
+/* HERO */
+.hero {
+  padding: 60px 0;
+  text-align: center;
+  background: radial-gradient(circle at 50% 50%, var(--glow), transparent 70%);
+}
+.profile-img {
+  width: 150px; height: 150px; border-radius: 50%;
+  border: 5px solid white; box-shadow: 0 0 30px var(--glow);
+  object-fit: cover;
+}
+
+/* CARDS & GLOW FOCUS */
+.card {
+  background: var(--card);
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  border-radius: 25px;
+  transition: all 0.5s ease;
+  color: var(--text);
+  margin-bottom: 30px;
+}
+
+/* THE GLOW EFFECT */
+.focused-card {
+  transform: scale(1.02);
+  border: 2px solid var(--primary) !important;
+  box-shadow: 0 0 40px var(--primary) !important;
+}
+
+/* AI CHATBOT (Real Logic) */
+#chat-window {
+  width: 350px; height: 480px; background: var(--card);
+  border: 1px solid var(--primary); border-radius: 20px;
+  display: none; flex-direction: column;
+  position: fixed; bottom: 100px; right: 20px; z-index: 2000;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.chat-btn {
+  width: 60px; height: 60px; background: var(--primary);
+  border-radius: 50%; position: fixed; bottom: 20px; right: 20px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.8rem; cursor: pointer; z-index: 2000;
+  box-shadow: 0 5px 15px var(--glow);
+}
+
+.bot-msg { background: #e9ecef; color: black; padding: 10px; border-radius: 15px; margin-bottom: 10px; width: fit-content; max-width: 80%; }
+.user-msg { background: var(--primary); color: white; padding: 10px; border-radius: 15px; margin-bottom: 10px; margin-left: auto; width: fit-content; max-width: 80%; }
+</style>
+</head>
+
+<body id="top">
+
+<nav class="navbar navbar-dark fixed-top">
+  <div class="container d-flex justify-content-between">
+    <div class="d-flex gap-2 gap-md-4">
+      <div onclick="goTo('about')" class="nav-link-custom"><i class="bi bi-person"></i><span class="nav-label">About</span></div>
+      <div onclick="goTo('skills')" class="nav-link-custom"><i class="bi bi-lightning-charge"></i><span class="nav-label">Skills</span></div>
+      <div onclick="goTo('projects')" class="nav-link-custom"><i class="bi bi-code-square"></i><span class="nav-label">Work</span></div>
+      <div onclick="goTo('apps')" class="nav-link-custom">
+  <i class="bi bi-grid-3x3-gap-fill"></i>
+  <span class="nav-label">Apps</span>
+</div>
+
+      <div onclick="goTo('contact')" class="nav-link-custom"><i class="bi bi-chat-left-dots"></i><span class="nav-label">Contact</span></div>
+      
+      <div onclick="toggleTheme()" class="nav-link-custom text-warning"><i id="theme-icon" class="bi bi-moon-fill"></i><span class="nav-label">Mode</span></div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <img src="TharuPic.jpeg" class="profile-img mb-3">
+    <h1 class="display-5 fw-bold">Choppa Tharun</h1>
+    <p class="lead">Full Stack .NET Developer | 3.5 Years | ASP.NET Core, MVC, Web API, SQL Server, ReactJS | Azure Certified | Free Lancer</p>
+  </div>
+</section>
+
+<div class="container">
+  <div id="about" class="card p-4">
+    <h3 class="text-primary fw-bold"><i class="bi bi-person-check me-2"></i>Professional Profile</h3>
+    <p>Proactive .NET Developer skilled in <b>ASP.NET MVC, .NET Core Web API, C#, SQL Server, Entity Framework</b> and <b> ReactJS.</b> Experienced in building scalable, full-stack applications with clean code, robust databases, and intuitive user interfaces. Strong collaborator, delivering reliable software solutions aligned with business needs. In parallel, works as a<b> freelance developer </b>and <b>YouTube vlogger/content creator</b>, producing technical content and <b>practical tutorials </b>that showcase real-world development experience and continuous learning.</p> </div>
+  <div id="skills" class="card p-4">
+    <h3 class="text-primary fw-bold mb-3"><i class="bi bi-cpu me-2"></i>Technology Stack</h3>
+    <div class="d-flex flex-wrap gap-2">
+      <span class="badge bg-primary p-2 px-3 rounded-pill">C#</span>
+      <span class="badge bg-dark p-2 px-3 rounded-pill">ASP.NET MVC</span>
+      <span class="badge bg-secondary p-2 px-3 rounded-pill">ASP.NET Web API</span>
+      <span class="badge bg-info text-dark p-2 px-3 rounded-pill">React.JS</span>
+      <span class="badge bg-dark p-2 px-3 rounded-pill">SQL Server</span>
+      <span class="badge bg-secondary p-2 px-3 rounded-pill">EntityFramework</span>
+      <span class="badge bg-primary p-2 px-3 rounded-pill">Linq</span>
+      <span class="badge bg-dark p-2 px-3 rounded-pill">MSSQL</span>
+      <span class="badge bg-primary p-2 px-3 rounded-pill">Postman</span>
+      <span class="badge bg-info text-dark p-2 px-3 rounded-pill">Devops</span>
+      <span class="badge bg-primary p-2 px-3 rounded-pill">Agile Methodology</span>
+      
+    </div>
+  </div>
+
+  <div id="projects" class="card p-4">
+    <h3 class="text-primary fw-bold mb-3"><i class="bi bi-folder2-open me-2"></i>Work Experience</h3>
+    <div class="border-start border-4 border-primary ps-3 mb-3">
+      <h4 class="fw-bold">HCL Technologies Ltd</h4>
+      <h5 class="fw-bold"><span class="text-primary">My Time Application </span><h6>Mar 2024 - present</h6></h5>
+      <p class="small text-muted">Designed and developed a timesheet management system that allows employees to log work hours through clock-in and clock-out functionality, manage daily and monthly timesheet entries, and apply for leave. Integrated role-based login to control user access and permissions. The application was developed using <b>ASP.NET MVC, Entity Framework, MS SQL Server </b>, along with <b>jQuery</b> and <b>JavaScript</b> for dynamic UI interactions.</p>
+    </div>
+    <div class="border-start border-4 border-primary ps-3">
+      <h5 class="fw-bold"><span class="text-primary">Caesars Entertainment </span><h6>  Feb 2023 - Mar 2024</h6> </h5>
+      <p class="small text-muted">Developed a role-based event and slot booking web application enabling time-based registrations and scheduling. Implemented RESTful APIs using ASP.NET Web API, EF, and MS SQL Server, with a React.js frontend. Performed API testing using xUnit and Postman</p>
+    </div>
+  </div>
+   <div id="apps" class="card p-4">
+    <h3 class="text-primary fw-bold mb-3"><i class="bi bi-grid-3x3-gap-fill"></i> Application</h3>
+    <div class="border-start border-4 border-primary ps-3 mb-3">
+     <span>View Project : </span>
+     <span> <span class="fw-bold">
+       <hover title="Game App ">
+  <a href="http://giftpicker.somee.com/" 
+     class="text-info " 
+     target="_blank">
+    GiftPicker
+  </a></hover>
+</span></span>
+ <p class="small text-muted"> <span></span> Built a web-based gaming application enabling users to choose gift sponsors and gift pickers with secure role-based login. The project was <b></b> fully developed independently, handling user management, role authorization, and game configuration from end to end.</p>
+    </div>
+  </div>
+
+  <div id="contact" class="card p-4 mb-5">
+    <h3 class="text-primary fw-bold mb-3"><i class="bi bi-envelope-at me-2"></i>Contact Me</h3>
+    <div class="d-flex justify-content-around text-center">
+      
+     <a href="https://www.linkedin.com/in/tchoppa/" 
+   class="text-decoration-none text-reset" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   <i class="bi bi-linkedin fs-2 d-block text-primary"></i> <!-- LinkedIn -->
+</a>
+   <a href="https://github.com/TChoppa" 
+   class="text-decoration-none text-reset" 
+   target="_blank" 
+   rel="noopener noreferrer"><i class="bi bi-github fs-2 d-block text-dark dark-text-white"></i> <!-- GitHub --></a>
+      <a href="mailto:tharunchoppa009@gmail.com" class="text-decoration-none text-reset"><i class="bi bi-envelope-fill fs-2 d-block text-danger"></i><!-- GitHub --></a>
+     <a href="https://wa.me/919392111106"
+       class="text-decoration-none text-reset"
+       target="_blank" rel="noopener noreferrer">
+      <i class="bi bi-whatsapp fs-2 d-block text-success"></i>
+     <!--<span class="small">WhatsApp</span> -->
+    </a>
+
+    <!-- Phone -->
+    <a href="tel:+919392111106"
+       class="text-decoration-none text-reset">
+      <i class="bi bi-telephone-fill fs-2 d-block text-success"></i>
+      <!-- Call -->
+    </a>
+    </div>
+  </div>
+</div>
+
+
+<div id="chat-window">
+  <div class="p-3 bg-primary text-white d-flex justify-content-between rounded-top-3">
+    <span class="fw-bold">AI Assistant</span>
+    <i class="bi bi-x-lg pointer" onclick="toggleChat()"></i>
+  </div>
+  <div class="p-3 overflow-y-auto flex-grow-1" id="chatBody">
+    <div class="bot-msg">Hi! Ask me about Tharun's skills, experience, or salary expectations.</div>
+  </div>
+  <div class="p-2 border-top">
+    <div class="input-group">
+      <input type="text" id="chatInput" class="form-control" placeholder="Ask me...">
+      <button class="btn btn-primary" onclick="askAI()"><i class="bi bi-send"></i></button>
+    </div>
+  </div>
+</div>
+<div class="chat-btn" onclick="toggleChat()"><i class="bi bi-robot"></i></div>
+
+<script>
+// THEME SWITCH
+function toggleTheme() {
+  const b = document.body;
+  const i = document.getElementById('theme-icon');
+  b.classList.toggle('dark-mode');
+  i.classList = b.classList.contains('dark-mode') ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+}
+
+// FIX: GO TO & GLOW FUNCTION
+function goTo(id) {
+  const target = document.getElementById(id);
+  
+  // 1. Smooth Scroll
+  window.scrollTo({
+    top: target.offsetTop - 150,
+    behavior: 'smooth'
+  });
+
+  // 2. Clear previous glows
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('focused-card'));
+
+  // 3. Apply Glow with small delay to match scroll timing
+  setTimeout(() => {
+    target.classList.add('focused-card');
+  }, 400);
+}
+
+// CHATBOT LOGIC
+function toggleChat() {
+  const w = document.getElementById('chat-window');
+  w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function askAI() {
+  const input = document.getElementById('chatInput');
+  const body = document.getElementById('chatBody');
+  const val = input.value.toLowerCase();
+  if(!val) return;
+
+  body.innerHTML += `<div class="user-msg">${input.value}</div>`;
+  input.value = "";
+
+  setTimeout(() => {
+    let r = "I'm Tharun's AI. He specializes in .NET and React. Would you like to see his projects?";
+    if(val.includes("salary")) r = "Tharun is open to competitive offers based on market standards for Full Stack roles.";
+    if(val.includes("skill")) r = "Tharun is an expert in ASP.NET Core, React, SQL Server, and Azure.";
+    if(val.includes("work") || val.includes("experience")) r = "He has worked at Caesars Entertainment building RESTful APIs.";
+    
+    body.innerHTML += `<div class="bot-msg">${r}</div>`;
+    body.scrollTop = body.scrollHeight;
+  }, 600);
+}
+</script>
+
+</body>
+</html>

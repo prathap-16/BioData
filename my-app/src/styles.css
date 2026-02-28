@@ -1,0 +1,108 @@
+body {
+  background: #f4f6fb;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Layout */
+.main-container {
+  padding-top: 80px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(to right, #e7f0ff, #f7fbff);
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #555;
+}
+
+/* Clickable Cards */
+.info-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-6px);
+  background: #0d6efd;
+  color: white;
+}
+
+/* Content */
+.content-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Skills */
+.skill-badges span {
+  display: inline-block;
+  background: #e7f0ff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin: 5px;
+  font-size: 14px;
+}
+/* NAVBAR */
+.custom-navbar {
+  background: #1e73ff;
+  padding: 12px 0;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-size: 22px;
+}
+
+.nav-link {
+  color: #fff !important;
+  margin: 0 8px;
+  font-weight: 500;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid #fff;
+}
+
+/* PAGE SPACING */
+.page-container {
+  padding-top: 80px;
+}
+
+/* DARK MODE */
+.dark-mode {
+  background: #121212;
+  color: #eaeaea;
+}
+
+.dark-mode .custom-navbar {
+  background: #0d6efd;
+}
+
+.dark-mode .card {
+  background: #1e1e1e;
+  color: #fff;
+}
